@@ -70,3 +70,4 @@ Linux64
 Win64
 /src/*.log
 /src/*.res
+*.xml
