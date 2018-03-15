@@ -31,6 +31,8 @@ requires
   rtl;
 
 contains
-  darkDynlib in 'api\darkDynlib.pas';
+  darkDynlib in 'api\darkDynlib.pas',
+  darkdynlib.dynlib.posix in 'implementation\posix\darkdynlib.dynlib.posix.pas',
+  darkdynlib.dynlib.windows in 'implementation\windows\darkdynlib.dynlib.windows.pas';
 
 end.

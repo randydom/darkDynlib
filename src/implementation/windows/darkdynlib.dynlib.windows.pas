@@ -28,6 +28,7 @@
 unit darkdynlib.dynlib.windows;
 
 interface
+{$ifdef MSWINDOWS}
 uses
   Windows,
   darkdynlib;
@@ -45,7 +46,9 @@ type
     destructor Destroy; override;
   end;
 
+{$endif}
 implementation
+{$ifdef MSWINDOWS}
 
 const
   null = 0;
@@ -82,4 +85,5 @@ begin
   Result := not (fHandle=null);
 end;
 
+{$endif}
 end.
