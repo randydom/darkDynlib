@@ -11,5 +11,5 @@ This library has been extracted from the darkGlass project at https://github.com
 
 # Additional build instructions
 
-The packages for darkTest and darkDynlib must be built for the desired target first, before building the unit test application.
+The package for darkDynlib must be built for the desired target first, before building the unit test application.
 Note, currently the unit tests are for windows only - Pending update.
