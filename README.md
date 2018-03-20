@@ -11,11 +11,5 @@ This library has been extracted from the darkGlass project at https://github.com
 
 # Additional build instructions
 
-This library does not depend on any of the other darkGlass libraries, however, the unit test application does depend on darkTest which can be found here https://github.com/chapmanworld/darkTest. In orer to build the unit test project, you must clone both darkTest and darkDynlib into the same parent directory or otherwise adjust the search paths accordingly.
-I.E.
-
-    packages/darkTest
-    packages/darkDynLib
-    
 The packages for darkTest and darkDynlib must be built for the desired target first, before building the unit test application.
-Note, currently the unit tests compiled using Delphi will only compile for Windows.
+Note, currently the unit tests are for windows only - Pending update.
