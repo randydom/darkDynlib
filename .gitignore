@@ -71,3 +71,4 @@ Win64
 /src/*.log
 /src/*.res
 *.xml
+*.log
