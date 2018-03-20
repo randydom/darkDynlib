@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6B15650A-4630-4A86-A9CF-BA5EAA860BF8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="src\pkgDarkDynlib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="test\DynLibUnitTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="pkgDarkDynlib">
+        <MSBuild Projects="src\pkgDarkDynlib.dproj"/>
+    </Target>
+    <Target Name="pkgDarkDynlib:Clean">
+        <MSBuild Projects="src\pkgDarkDynlib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgDarkDynlib:Make">
+        <MSBuild Projects="src\pkgDarkDynlib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DynLibUnitTest">
+        <MSBuild Projects="test\DynLibUnitTest.dproj"/>
+    </Target>
+    <Target Name="DynLibUnitTest:Clean">
+        <MSBuild Projects="test\DynLibUnitTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DynLibUnitTest:Make">
+        <MSBuild Projects="test\DynLibUnitTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="pkgDarkDynlib;DynLibUnitTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="pkgDarkDynlib:Clean;DynLibUnitTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="pkgDarkDynlib:Make;DynLibUnitTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -42,6 +42,16 @@ type
     ['{AA731CC2-8779-4F83-8117-F481DDD2B48D}']
 
     /// <summary>
+    ///   If the LoadLibary() or FreeLibrary() methods fail, this method can be
+    ///   used to retrieve the OS-level error code.
+    /// </summary>
+    /// <remarks>
+    ///   Note, on windows (126 / $7E) is ERROR_MOD_NOT_FOUND meaning the
+    ///   library could not be found. Check the library name and path.
+    /// </remarks>
+    function GetError: uint32;
+
+    /// <summary>
     ///   Loads a library from disk into memory.
     /// </summary>
     /// <param name="filepath">

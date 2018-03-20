@@ -36,8 +36,10 @@ uses
 type
   TWindowsDynlib = class( TInterfacedObject, IDynLib )
   private
+    fError: uint32;
     fHandle: HMODULE;
   private
+    function GetError: uint32;
     function LoadLibrary( filepath: string ): boolean;
     function FreeLibrary: boolean;
     function GetProcAddress( funcName: string ): pointer;
@@ -70,8 +72,18 @@ end;
 function TWindowsDynlib.FreeLibrary: boolean;
 begin
   Result := True;
-  Windows.FreeLibrary(fHandle);
+  if fHandle=null then begin
+    exit;
+  end;
+  if not Windows.FreeLibrary(fHandle) then begin
+    fError := Windows.GetLastError;
+  end;
   fHandle := null;
+end;
+
+function TWindowsDynlib.GetError: uint32;
+begin
+  Result := fError;
 end;
 
 function TWindowsDynlib.GetProcAddress( funcName: string ): pointer;
@@ -81,8 +93,16 @@ end;
 
 function TWindowsDynlib.LoadLibrary(filepath: string): boolean;
 begin
+  //- If there is already a library loaded, free it.
+  if fHandle<>null then begin
+    FreeLibrary;
+  end;
+  //-
   fHandle := Windows.LoadLibraryA(pAnsiChar(UTF8Encode(filepath)));
   Result := not (fHandle=null);
+  if not Result then begin
+    fError := Windows.GetLastError;
+  end;
 end;
 
 {$endif}

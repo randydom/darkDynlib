@@ -28,14 +28,17 @@
 unit darkdynlib.dynlib.posix;
 
 interface
+{$ifndef MSWINDOWS}
 uses
   darkdynlib;
 
 type
   TPosixDynLib = class( TInterfacedObject, IDynLib )
   private
+    fError: uint32;
     fHandle: pointer;
   private
+    function GetError: uint32;
     function LoadLibrary( filepath: string ): boolean;
     function FreeLibrary: boolean;
     function GetProcAddress( funcName: string ): pointer;
@@ -44,7 +47,11 @@ type
     destructor Destroy; override;
   end;
 
+{$endif}
 implementation
+{$ifndef MSWINDOWS}
+uses
+  Posix.errno;
 
 const
   clibname = 'libdl.so';
@@ -78,6 +85,14 @@ begin
     exit;
   end;
   Result := dlClose(fHandle) = cSuccess;
+  if not Result then begin
+    fError := errno;
+  end;
+end;
+
+function TPosixDynLib.GetError: uint32;
+begin
+  Result := fError;
 end;
 
 function TPosixDynLib.GetProcAddress( funcName: string ): pointer;
@@ -93,10 +108,14 @@ function TPosixDynLib.LoadLibrary(filepath: string): boolean;
 begin
   Result := False;
   if fHandle<>nil then begin
-    exit;
+    FreeLibrary;
   end;
   fHandle := dlOpen(pointer(UTF8Encode(filepath)),cRTLD_LAZY);
   Result := fHandle<>nil;
+  if not Result then begin
+    fError := errno;
+  end;
 end;
 
+{$endif}
 end.
