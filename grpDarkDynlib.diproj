@@ -17,7 +17,7 @@
   <ShowPropertyAccessors>true</ShowPropertyAccessors>
   <FileNamePolicy>0</FileNamePolicy>
   <CompilerVersion>23</CompilerVersion>
-  <TargetPlatform>1</TargetPlatform>
+  <TargetPlatform>0</TargetPlatform>
   <Sources>
     <Source>.\src\pkgDarkDynlib.dpk</Source>
   </Sources>
