@@ -1,6 +1,6 @@
 # darkDynlib
-Delphi platform-agnostic wrapper classes around OS dynamic library loading functions.
-This liobrary has been extracted from the darkGlass project at https://github.com/chapmanworld/DarkGlass as a sub-module which can be used independently. 
+A platform-agnostic wrapper class around OS dynamic library loading functions.
+This library has been extracted from the darkGlass project at https://github.com/chapmanworld/DarkGlass as a sub-module which can be used independently. 
 
 # Usage Instructions
 
