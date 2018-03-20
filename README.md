@@ -17,4 +17,5 @@ I.E.
     packages/darkTest
     packages/darkDynLib
     
+The packages for darkTest and darkDynlib must be built for the desired target first, before building the unit test application.
 Note, currently the unit tests compiled using Delphi will only compile for Windows.
